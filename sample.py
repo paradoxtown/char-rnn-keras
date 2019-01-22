@@ -6,8 +6,8 @@ from keras.utils import to_categorical
 
 
 class Sample(object):
-    def __init__(self, model_path, vocab_size):
-        self.vocab_size = vocab_size
+    def __init__(self, model_path, vocab_num):
+        self.vocab_size = vocab_num
         self.model = load_model(model_path)
 
     @staticmethod
@@ -20,7 +20,7 @@ class Sample(object):
         prediction = np.ones((size,))
         for ch in start:
             x = np.zeros((1, 1))
-            x[0, 0] = to_categorical(ch, num_classes=self.vocab_size)
+            x[0, 0] = ch
             prediction = self.model.predict(x)
 
         ch = self.get_top_n(prediction, 5)
@@ -42,16 +42,17 @@ if __name__ == '__main__':
                         help='the max length of the sample')
     parser.add_argument('--start_string', type=str, default='',
                         help='give a string to generate your sample')
-    parser.add_argument('--model_path', type=str, default='./model/poetry/MyModel',
+    parser.add_argument('--model_path', type=str, default='./model/poetry/checkpoint_1548128137',
                         help='the path of your model witch you trained before')
     parser.add_argument('--vocab_path', type=str, default='./model/poetry/dictionary.txt',
                         help='the path of your dictionary')
     parser.add_argument('--word2id_path', type=str, default='./model/poetry/word2id.txt')
     args = parser.parse_args()
-    vocab_size = len(open(args.vocab_path).readlines())
+    vocab_size = len(open(args.vocab_path, 'r', encoding='utf-8').readlines())
     MD = MakeData(word2id_path=args.word2id_path, read=True)
     start_string = MD.text2array(args.start_string)
-    s = Sample(args.model_path, vocab_size)
-    output = s.generate_sample(args.max_length, start_string, vocab_size)
-    output = MD.array2text(output)
-    print(output)
+    print(start_string)
+    # s = Sample(args.model_path, vocab_size)
+    # output = s.generate_sample(args.max_length, start_string, vocab_size)
+    # output = MD.array2text(output)
+    # print(output)

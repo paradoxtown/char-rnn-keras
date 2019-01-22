@@ -1,5 +1,6 @@
+import time
 from keras.models import Sequential
-from keras.layers import Dense, LSTM, Embedding
+from keras.layers import Dense, LSTM, Embedding, Dropout
 
 
 class CharRNN(Sequential):
@@ -9,13 +10,11 @@ class CharRNN(Sequential):
         self.label_path = label_path
         self.vocab_size = vocab_size
         self.add(Embedding(input_dim=vocab_size, output_dim=embedding_size, input_length=26))
-        # because we dont know the length and we dont link to he Flatten or Dense layer
-        # so we needn't know the input_length
-        # self.add(Input(shape=(32, 26)))
         self.add(LSTM(lstm_size, dropout=dropout_rate, activation='sigmoid', return_sequences=True))
         self.add(LSTM(lstm_size, dropout=dropout_rate, activation='sigmoid'))
         self.add(Dense(vocab_size, activation='softmax'))
         self.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+        print(self.summary())
 
     def train(self, data_stream, epochs, model_path):
         cnt = 0
@@ -25,5 +24,6 @@ class CharRNN(Sequential):
             if cnt == epochs:
                 break
             if cnt % 10 == 0:
-                self.save(model_path)
+                checkpoint_path = model_path + "_" + str(time.time()).split('.')[0]
+                self.save(checkpoint_path)
         # self.save(model_path)

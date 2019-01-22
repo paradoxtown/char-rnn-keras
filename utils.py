@@ -1,11 +1,13 @@
 import numpy as np
 from keras.utils import to_categorical
+import pickle
 
 
 def data_stream(feature_path, label_path, vocab_size):
     features = np.load(feature_path)
     labels = np.load(label_path)
     while True:
+        # TODO: shuffle
         for feature, label in zip(features, labels):
             label = to_categorical(label, num_classes=vocab_size)
             yield feature, label
@@ -18,14 +20,12 @@ class MakeData(object):
         if read:
             self.word2id = {}
             self.id2word = {}
-            lines = open(word2id_path, 'r').readlines()
-            for line in lines:
-                word_id = line.split()
-                print(word_id)
-                if word_id:
-                    word, index = word_id[0], int(word_id[1])
-                    self.word2id[word] = index
-                    self.id2word[index] = word
+            with open(word2id_path, 'rb') as f:
+                w2i = pickle.load(f)
+            for i in range(len(w2i)):
+                self.word2id[w2i[i]] = i
+                self.id2word[i] = w2i[i]
+
         else:
             self.path = raw_path
             self.save_path = dict_path
@@ -50,27 +50,26 @@ class MakeData(object):
 
     def delete_low_frequency(self):
         if self.low_frequency != -1:
-            self.words = {word: frequency for word, frequency in self.words.items()}
-        word2id_file = open(self.word2id_path, 'w')
-        index = 1
-        for word in self.words.keys():
+            self.words = {word: frequency for word, frequency in self.words.items() if frequency > self.low_frequency}
+        index = 0
+        for word in self.words:
             self.word2id[word] = index
-            word2id_file.write(word + " " + str(index) + "\n")
-            self.id2word[index] = word
             index += 1
+        w2i = [word for word in self.words]
+        with open(self.word2id_path, 'wb') as f:
+            pickle.dump(list(w2i), f)
 
     def save_dictionary(self):
-        dictionary = open(self.save_path, 'w')
+        dictionary = open(self.save_path, 'w', encoding='utf-8')
         for word, frequency in self.words.items():
             dictionary.write(word + " " + str(frequency) + "\n")
         dictionary.close()
 
     @property
     def vocab_size(self):
-        # because the 0 is not to use, it is the location of none
         if self.read:
             return len(self.word2id)
-        return len(self.words)
+        return len(self.words.keys())
 
     def get_id(self, word):
         return self.word2id[word]
@@ -96,16 +95,16 @@ class MakeData(object):
         batches = int(len(text_array) / unit)
         text_array = text_array[:unit * batches]
         text_array = text_array.reshape((batch_size, -1))
-        # np.random.shuffle(text_array)
         print(text_array.shape)
         feature = []
         label = []
         for n in range(0, text_array.shape[1], steps):
+            # print("(n: n + steps) " + str(n) + ": " + str(n + steps))
             x = text_array[:, n: n + steps]
             if (n + steps) != text_array.shape[1]:
-                y = text_array[:, n + steps + 1]
+                y = text_array[:, n + steps]
             else:
-                y = text_array[:, 1]
+                y = text_array[:, 0]
             feature.append(x)
             label.append(y)
         feature = np.array(feature)

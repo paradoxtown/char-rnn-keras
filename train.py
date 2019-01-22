@@ -2,9 +2,6 @@ import argparse
 import os
 from utils import MakeData, data_stream
 from model import CharRNN
-from keras.objectives import categorical_crossentropy
-from keras.metrics import categorical_accuracy as accuracy
-import tensorflow as tf
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument('--data_path', type=str, default='data/poetry.txt',
@@ -20,7 +17,7 @@ parser.add_argument('--dropout_rate', type=float, default=0.5)
 parser.add_argument('--layers_nums', type=int, default=2)
 parser.add_argument('--embedding_size', type=int, default=100)
 parser.add_argument('--batch_size', type=int, default=32)
-parser.add_argument('--epochs', type=int, default=100)
+parser.add_argument('--epochs', type=int, default=10000)
 args = parser.parse_args()
 
 
@@ -29,7 +26,7 @@ def run():
     if os.path.exists(model_path) is False:
         os.makedirs(model_path)
     dict_path = os.path.join(model_path, 'dictionary.txt')
-    word2id_path = os.path.join(model_path, 'word2id.txt')
+    word2id_path = os.path.join(model_path, 'word2id.pkl')
     feature_path = os.path.join(model_path, 'feature.npy')
     label_path = os.path.join(model_path, 'label.npy')
 
@@ -45,7 +42,7 @@ def run():
                           word2id_path=word2id_path,
                           feature_path=feature_path,
                           label_path=label_path,
-                          low_frequency=1)
+                          low_frequency=0)
     data_maker.pretreatment_data()
     data_maker.delete_low_frequency()
     file = open(args.data_path, 'r', encoding='utf-8')
@@ -54,7 +51,6 @@ def run():
     text_array = data_maker.text2array(content)
     data_maker.save_dictionary()
     data_maker.make_data(text_array, args.batch_size, args.steps)
-
     model = CharRNN(vocab_size=data_maker.vocab_size,
                     feature_path=feature_path,
                     label_path=label_path,
@@ -63,7 +59,7 @@ def run():
                     embedding_size=args.embedding_size)
 
     model.train(data_stream=data_stream(feature_path, label_path, data_maker.vocab_size),
-                epochs=args.epochs, model_path=os.path.join(model_path, 'MyModel'))
+                epochs=args.epochs, model_path=os.path.join(model_path, 'checkpoint'))
 
 
 if __name__ == '__main__':
