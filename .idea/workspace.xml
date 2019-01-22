@@ -3,10 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="97731916-4396-47c4-b2f8-ac59bd04c3b3" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/poetry/checkpoint_1548130394" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/poetry/checkpoint_1548130395" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/poetry/checkpoint_1548130396" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/poetry/checkpoint_1548130397" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/poetry/checkpoint_1548130398" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/poetry/checkpoint_1548130399" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/poetry/checkpoint_1548130400" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/poetry/checkpoint_1548130401" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/poetry/checkpoint_1548130404" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/poetry/checkpoint_1548130405" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/poetry/checkpoint_1548130406" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/poetry/checkpoint_1548130407" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/poetry/checkpoint_1548130408" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/poetry/word2id.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/check.py" beforeDir="false" afterPath="$PROJECT_DIR$/check.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/poetry/MyModel" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/poetry/MyModel" beforeDir="false" afterPath="$PROJECT_DIR$/model/poetry/checkpoint_1548130402" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/poetry/dictionary.txt" beforeDir="false" afterPath="$PROJECT_DIR$/model/poetry/dictionary.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/poetry/feature.npy" beforeDir="false" afterPath="$PROJECT_DIR$/model/poetry/feature.npy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/poetry/label.npy" beforeDir="false" afterPath="$PROJECT_DIR$/model/poetry/label.npy" afterDir="false" />
@@ -42,7 +56,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="209">
@@ -54,7 +68,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/train.py">
           <provider selected="true" editor-type-id="text-editor">
             <state>
@@ -109,7 +123,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="952" />
     <option name="width" value="977" />
     <option name="height" value="1050" />
@@ -279,23 +293,22 @@
       <workItem from="1548088677267" duration="58000" />
       <workItem from="1548124063213" duration="2826000" />
       <workItem from="1548126936431" duration="213000" />
-      <workItem from="1548127167903" duration="4281000" />
+      <workItem from="1548127167903" duration="4545000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50700000" />
+    <option name="totallyTimeSpent" value="50964000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.17785235" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4331927" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.4331927" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -304,7 +317,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3277311" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.47257385" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -368,13 +381,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -382,6 +388,13 @@
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
         </state>
       </provider>
     </entry>
